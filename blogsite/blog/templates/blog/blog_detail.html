@@ -4,11 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #555;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            text-align: justify; /* Makes the text look more organized */
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ post.title }}</h1>
-    <img src="{{ post.image.url }}" alt="{{ post.title }}">
-    <p>{{ post.body }}</p>
-    <a href="/">Back to blog list</a>
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        <p>{{ post.body|linebreaks }}</p> 
+        <a href="/">Back to blog list</a>
+    </div>
 </body>
 </html>
