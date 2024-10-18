@@ -4,14 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Posts</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #555;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px auto;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .search-container input[type="submit"] {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .search-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .post-container {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 700px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .post-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        h2 a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+        h2 a:hover {
+            color: #007bff;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .read-more:hover {
+            background: #0056b3;
+        }
+        .post-container:hover .read-more {
+            background: #0069d9;
+        }
+    </style>
 </head>
 <body>
     <h1>Blog Posts</h1>
+    <div class="search-container">
+        <form method="GET" action="">
+            <input type="text" name="q" placeholder="Search for blog titles..." required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
     {% for post in posts %}
-        <div>
-            <h2><a href="#">{{ post.title }}</a></h2>
+        <div class="post-container">
+            <h2>
+                <a href="{% url 'blog_detail' post.id %}">{{ post.title }}</a>
+            </h2>
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
-            <p>{{ post.body|truncatewords:30 }}</p>
+            <p>{{ post.body|truncatewords:30 }}...</p>
+            <a href="{% url 'blog_detail' post.id %}" class="read-more">Read More</a>
         </div>
     {% endfor %}
 </body>
