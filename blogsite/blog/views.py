@@ -8,7 +8,7 @@ def blog_list(request):
         posts = BlogPost.objects.filter(title__icontains=query)
     else:
         posts = BlogPost.objects.all()
-    return render(request, 'blog/blog_list.html', {'posts': posts})
+    return render(request, 'blog/index.html', {'posts': posts})
 
 def blog_detail(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)
